@@ -23,4 +23,5 @@ Required Softwares
 - starship
 - cargo, ripgrep, exa, bat, zoxide, jq, moreutils
 - fzf, delta (for git), diff2html, sql-formatter-cli
-- neovim, zathura, mc (Midnight Commander), nodejs, stow
+- neovim, zathura, mc (Midnight Commander), nodejs, stow, ranger
+- Nala (For package management - instead of apt) | Nala-Legacy for older versions

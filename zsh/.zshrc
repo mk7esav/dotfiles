@@ -1,5 +1,5 @@
 # Reloading the config files
-alias sc='source ~/.zshrc'
+alias rl='source ~/.zshrc'
 
 # Starship shell
 # ==================================================
@@ -61,6 +61,7 @@ eval "$(zoxide init zsh)"
 # sudo apt install fzf
 # needs neovim - sudo apt install neovim
 # alias finder="fzf --margin 10% --border --reverse --prompt='$ ' | xargs lvim"
+# export FZF_DEFAULT_COMMAND="find -L" # For looking at the hidden files
 alias finder="fzf --no-clear --margin 5% --color bg:#353E42 --reverse | xargs lvim"
 alias fzf='fzf --margin 5% --color bg:#353E42 --reverse'
 
@@ -102,3 +103,6 @@ alias ..='cd ..'
 export JAVA_HOME=/opt/OracleJava
 export ANT_HOME=/opt/ANT
 export PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+
+alias mc='mc --nocolor'
+alias apt='sudo nala'
