@@ -16,3 +16,11 @@
 ![Starship](https://img.shields.io/badge/starship-DD0B78?style=for-the-badge&logo=starship&logoColor=white)
 ![tmux](https://img.shields.io/badge/tmux-1BB91F?style=for-the-badge&logo=tmux&logoColor=white)
 ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+
+Required Softwares 
+
+- kitty
+- starship
+- cargo, ripgrep, exa, bat, zoxide, jq, moreutils
+- fzf, delta (for git), diff2html, sql-formatter-cli
+- neovim, zathura, mc (Midnight Commander), nodejs, stow

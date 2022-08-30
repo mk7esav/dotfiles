@@ -98,3 +98,7 @@ alias v='nvim'
 # sudo apt install zathura
 alias pdf='zathura'
 alias ..='cd ..'
+
+export JAVA_HOME=/opt/OracleJava
+export ANT_HOME=/opt/ANT
+export PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
