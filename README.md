@@ -27,3 +27,8 @@ Required Softwares
 - Nala (For package management - instead of apt) | Nala-Legacy for older versions
 
 Terminal Color theme can be found here <a href="https://github.com/Gogh-Co/Gogh"> Gogh </a>
+
+Tiling Window Manager : bspwm
+
+- bspwm, sxhkd, rxvt-unicode, dmenu
+- change the terminal from rxvt-unicode to gnome-terminal/kitty
