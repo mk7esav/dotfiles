@@ -25,3 +25,5 @@ Required Softwares
 - fzf, delta (for git), diff2html, sql-formatter-cli
 - neovim, zathura, mc (Midnight Commander), nodejs, stow, ranger
 - Nala (For package management - instead of apt) | Nala-Legacy for older versions
+
+Terminal Color theme can be found here <a href="https://github.com/Gogh-Co/Gogh"> Gogh </a>
