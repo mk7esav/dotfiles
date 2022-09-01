@@ -38,3 +38,5 @@ Notes:
 - Rofi themes 
 https://github.com/adi1090x/rofi
 
+Tools:
+- Lazygit, Lazynpm | Instead of lazygit use <a href="https://github.com/extrawurst/gitui/releases/tag/v0.21.0"> gitui </a>
