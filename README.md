@@ -32,3 +32,9 @@ Tiling Window Manager : bspwm
 
 - bspwm, sxhkd, rxvt-unicode, dmenu
 - change the terminal from rxvt-unicode to gnome-terminal/kitty
+
+Notes:
+- Tapping touchpad config <a href="https://wiki.archlinux.org/title/Libinput#Via_Xorg_configuration_file"> Wiki </a>
+- Rofi themes 
+https://github.com/adi1090x/rofi
+
