@@ -1,3 +1,3 @@
 require('general')
 require('keymaps')
-require('plugins')
+require('nvim-plugins')
