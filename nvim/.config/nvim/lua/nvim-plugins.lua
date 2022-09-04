@@ -39,4 +39,6 @@ packer.startup(function(use)
   use 'dinhhuy258/git.nvim'
   use 'onsails/lspkind.nvim'
   use 'voldikss/vim-floaterm'
+  use 'bluz71/vim-nightfly-guicolors'
+  use 'ishan9299/nvim-solarized-lua'
 end)
