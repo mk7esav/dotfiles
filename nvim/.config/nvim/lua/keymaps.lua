@@ -16,3 +16,6 @@ map('n', '<space>f', ':Telescope find_files<CR>')
 map('n', '<space>g', ':Telescope live_grep<CR>')
 map('n', '<space>e', ':Telescope file_browser<CR>')
 
+map('i', '<C-l>', '<Esc>A {<CR>}<Esc>O')
+map('n', ';', '<Esc>A;<C-o>')
+

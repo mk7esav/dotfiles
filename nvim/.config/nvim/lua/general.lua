@@ -30,7 +30,7 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
-vim.opt.background = 'dark'
+-- vim.opt.background = 'dark'
 
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 
@@ -39,10 +39,8 @@ vim.opt.path:append { '**' }
 vim.opt.wildignore:append { '**/node_modules' }
 
 vim.api.nvim_create_autocmd("InsertLeave", {
-    pattern = "*",
-    command = "set nopaste"
+  pattern = "*",
+  command = "set nopaste"
 })
 
 vim.opt.formatoptions:append { 'r' }
-
-vim.cmd("colo horizon")

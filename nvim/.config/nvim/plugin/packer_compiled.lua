@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -70,8 +75,10 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
+    load_after = {},
     loaded = true,
-    path = "/home/office/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    needs_bufread = true,
+    path = "/home/office/.local/share/nvim/site/pack/packer/opt/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-buffer"] = {
@@ -84,6 +91,11 @@ _G.packer_plugins = {
     path = "/home/office/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/office/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
   ["git.nvim"] = {
     loaded = true,
     path = "/home/office/.local/share/nvim/site/pack/packer/start/git.nvim",
@@ -93,6 +105,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/office/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/home/office/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -187,6 +204,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-cmp ]]
+vim.cmd [[ packadd LuaSnip ]]
+time([[Sequenced loading]], false)
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)
