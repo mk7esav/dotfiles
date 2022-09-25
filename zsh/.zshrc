@@ -89,7 +89,8 @@ export SCRIPTS=$HOME/.local/bin
 export CARGO=$HOME/.cargo/bin
 export JAVA_HOME=/opt/OracleJava
 export ANT_HOME=/opt/ANT
-export PATH=$PATH:$CARGO:$SCRIPTS:$JAVA_HOME/bin:$ANT_HOME/bin
+export ANDROID=/opt/platform-tools/
+export PATH=$PATH:$CARGO:$SCRIPTS:$JAVA_HOME/bin:$ANT_HOME/bin:$ANDROID
 
 
 alias rl='source ~/.zshrc'
@@ -110,3 +111,8 @@ alias mc='mc --nocolor'
 alias apt='sudo nala'
 alias mkdir='mkdir -p '
 alias rmdir='rm -r '
+
+bindkey -v
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

@@ -14,6 +14,8 @@ packer.startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
   use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+  use { "mfussenegger/nvim-jdtls", ft = { "java" } }
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
   use 'glepnir/lspsaga.nvim'
@@ -42,3 +44,9 @@ packer.startup(function(use)
   use 'bluz71/vim-nightfly-guicolors'
   use 'ishan9299/nvim-solarized-lua'
 end)
+
+vim.cmd [[
+filetype on
+filetype plugin on
+filetype indent on
+]]
