@@ -1,0 +1,29 @@
+" The Essentials
+nnoremap \e :edit ~/.ideavimrc<cr>
+nnoremap \r <Action>(IdeaVim.ReloadVimRc.reload)
+let mapleader=" "
+
+" Use Intellij's Better feature for vim
+set ideajoin
+set idearefactormode=keep
+vnoremap < <gv
+vnoremap > >gv
+vmap <s-Up> <Up>
+vmap <s-Down> <Down>
+
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
+map zc <Action>(CollapseRegion)
+map zo <Action>(ExpandRegion)
+map <leader>e <Action>(RecentFiles)
+map <leader>r <Action>(Refactorings.QuickListPopupAction)
+map <leader>f <Action>(FindInPath)
+map <leader>b <Action>(Switcher)
+map <TAB> <Action>(NextTab)
+map <s-TAB> <Action>(PreviousTab)
+map <leader>q <Action>(CloseEditor)
+map <leader>t <Action>(Terminal.OpenInTerminal)
+map =G <Action>(ReformatCode)
+
+set is "incremental search - when searching shows the matched strings
+set scrolloff=10
