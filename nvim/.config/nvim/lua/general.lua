@@ -45,4 +45,4 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 vim.opt.formatoptions:append { 'r' }
 -- Lua initialization file
-vim.cmd [[colorscheme nightfly]]
+-- vim.cmd [[colorscheme nightfly]]
