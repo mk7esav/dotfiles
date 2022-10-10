@@ -6,12 +6,8 @@ SAVEHIST=10000
 
 export ZDOTDIR=$HOME/.config/zsh/
 
-if [ -d "/opt/Java8/" ]; then
-    export JAVA_HOME=/opt/Java8/
-    export PATH=$PATH:$JAVA_HOME/bin
-else
-    echo "Java 8 Not available in /opt"
-fi
+export JAVA_HOME=/usr/lib/jvm/java-8/
+export PATH=$PATH:$JAVA_HOME/bin
 
 if [ -d "/opt/Ant-1.10.5/" ]; then
     export ANT_HOME=/opt/Ant-1.10.5/

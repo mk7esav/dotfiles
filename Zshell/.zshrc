@@ -77,7 +77,11 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]%}%{$fg[magenta]%} %b%{$fg[blue]%})"
 
-PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}k%{$fg[red]%}@%{$fg[white]%}7%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
+#PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}k%{$fg[red]%}@%{$fg[white]%}7%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
+PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
 PROMPT+="\$vcs_info_msg_0_ "
 
-freshfetch -a gnu
+
+# Jenv related config
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
