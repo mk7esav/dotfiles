@@ -83,5 +83,8 @@ PROMPT+="\$vcs_info_msg_0_ "
 
 
 # Jenv related config
+export JAVA_HOME=/usr/lib/jvm/java-8/
+export PATH=$PATH:$JAVA_HOME/bin
+
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"

@@ -1,0 +1,190 @@
+#!/bin/bash
+
+# Beware of white space at the top of xml files 
+# that would lead to an error called - SAXParseException ; processing instruction target matching [xX][mM][lL] is not allowed
+MAIN_FOLDER=$1
+
+# Folder creation
+mkdir -p ${MAIN_FOLDER}/src/main/java/com/developers/example
+mkdir -p ${MAIN_FOLDER}/src/main/java/com/developers/servlets
+mkdir -p ${MAIN_FOLDER}/src/main/webapp/META-INF/
+mkdir -p ${MAIN_FOLDER}/src/main/webapp/WEB-INF/
+mkdir -p ${MAIN_FOLDER}/src/test/java/
+
+# File creation
+touch ${MAIN_FOLDER}/pom.xml
+touch ${MAIN_FOLDER}/src/main/java/com/developers/example/Run.java
+touch ${MAIN_FOLDER}/src/main/java/com/developers/servlets/HelloServlet.java
+touch ${MAIN_FOLDER}/src/main/webapp/META-INF/context.xml
+touch ${MAIN_FOLDER}/src/main/webapp/index.html
+
+# contents 
+# pom.xml
+
+echo '''
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.developers</groupId>
+    <artifactId>'''${MAIN_FOLDER}'''</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <name>'''${MAIN_FOLDER}'''</name>
+
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <silent>true</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>7.0</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+''' > ${MAIN_FOLDER}/pom.xml
+
+
+# index.html
+
+echo '''
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Welcome to Java!</h1>
+    </body>
+</html>
+''' > ${MAIN_FOLDER}/src/main/webapp/index.html
+
+# Context.html
+echo '''<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/'''${MAIN_FOLDER}-1.0'''"/> 
+''' > ${MAIN_FOLDER}/src/main/webapp/META-INF/context.xml
+
+# Run.java
+echo '''
+
+package com.developers.example;
+
+public class Run {
+
+    public static void main(String args[]) {
+
+    }
+}
+
+''' > ${MAIN_FOLDER}/src/main/java/com/developers/example/Run.java
+
+
+# HelloServlet.java
+
+echo '''
+package com.developers.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(name = "HelloServlet", urlPatterns = {"/hello"})
+public class HelloServlet extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            out.println("Hey there");
+        }
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+
+}
+''' > ${MAIN_FOLDER}/src/main/java/com/developers/servlets/HelloServlet.java
+
+
+echo 'Project Created'
+
+
