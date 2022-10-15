@@ -1,3 +1,49 @@
+HISTSIZE=10000
+SAVEHIST=10000
+export ZDOTDIR=$HOME/.config/zsh/
+export JAVA_HOME=/usr/lib/jvm/java-8/
+export PATH=$PATH:$JAVA_HOME/bin
+export ANT_HOME=/opt/Ant-1.10.5/
+export PATH=$PATH:$ANT_HOME/bin
+export NODE=/opt/NodeJS/v0.10.32/
+export PATH=$PATH:$NODE/bin
+export EDITOR="nvim"
+export TERMINAL="kitty"
+export BROWSER="google-chrome"
+export QT_QPA_PLATFORMTHEME=qt5ct
+#
+# alias and hashes
+alias la='ls -la'
+alias ll='ls -lF'
+alias lla='ls -laF'
+alias mkdir='mkdir -pv'
+alias rm='rm -v'
+alias -g ...='cd ../..'
+alias -g ....='cd ../../..'
+alias -g X='|xargs'
+alias -g S='|sort'
+alias -g US='|sort -u'
+alias -g M='|more'
+
+# suffix aliases
+alias -s md=nvim # filename.md<cr> opens file in nvim
+
+alias ls='exa --icons'
+alias la='exa --icons -la'
+alias ll='exa --icons -lF'
+alias lla='exa --icons -laF'
+alias tree='exa --tree --icons'
+
+alias -g L='|less'
+alias -g NUL='> /dev/null 2>&1'
+hash -d nvim=$HOME/.config/nvim/
+
+alias ls='exa --icons'
+alias la='exa --icons -la'
+alias ll='exa --icons -lF'
+alias lla='exa --icons -laF'
+alias tree='exa --tree --icons'
+
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
@@ -34,20 +80,12 @@ setopt interactive_comments
 stty stop undef
 
 bindkey -v # can also take emacs -e 
-#bindkey -L # list all the keybindings
 bindkey "^L" clear-screen
-
-if !command -v fzf NUL
-then
-    bindkey "^f" "fzf --reverse"
-fi
-
 
 unset BEEP
 autoload -Uz compinit
 
 zstyle ':completion:*' menu select
-#zstyle ':completion:*' completer _expand _complete _correct
 zmodload zsh/complist
 _comp_options+=(globdots)
 
@@ -64,7 +102,6 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 
 setopt prompt_subst
-
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
 +vi-git-untracked(){
@@ -80,11 +117,5 @@ zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]
 #PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}k%{$fg[red]%}@%{$fg[white]%}7%{$fg[blue]%}] %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )%{$fg[cyan]%}%c%{$reset_color%}"
 PROMPT+="\$vcs_info_msg_0_ "
-
-
-# Jenv related config
-export JAVA_HOME=/usr/lib/jvm/java-8/
-export PATH=$PATH:$JAVA_HOME/bin
-
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
